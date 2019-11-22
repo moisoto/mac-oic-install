@@ -30,3 +30,15 @@ sudo ./install_oic.zsh
 ```
 Please note these scripts are for ZSH shell (they may work in bash but has not been tested).
 They will run using the ZSH Shell if you are running Catalina or if you have ZSH Installed.
+
+### About Catalina Notarization Requirements
+When you first try to use any of the binaries supplied by Oracle on a Catalina Installation, you'll probably encounter an error stating the developer can't be verified.
+
+This is due to Catalina not allowing to run binaries with quarantine flags (non-notarized binaries downloaded from the web are saved with the quarantine flag).
+
+To solve this you should open System Preference Panel and select "Security & Privacy". On the bottom you'll find a message letting you know about the blocked process and a button labeled "Open Anyways" that will remove the quarantine flag.
+
+A good way to "fix" most binaries is to run sqlplus with Security & Privacy Panel opened and press the "Open Anyways" button, then try to run sqlplus again. It will then fail opening the libraries that sqlplus uses. Keep doing this process until sqlplus runs successfully.
+
+A Wiki page will be created with more detailed instructions of this process.
+
