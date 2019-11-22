@@ -164,7 +164,7 @@ echo "Script instantclient.sh created at $INSTALL_ORACLE_HOME/share/instantclien
 # Setup a link to $ORACLE_HOME/share/instantclient
 SHARE_LINK=/usr/local/share/instantclient
 LINK_DEST="../oracle/product/instantclient/$INSTALL_ORACLE_VERSION/share/instantclient"
-#LINK_DEST="$INSTALL_ORACLE_HOME/share/instantclient"
+SET_ORAENV_SH="$INSTALL_ORACLE_HOME/share/instantclient/instantclient.sh"
 if [[ -h $SHARE_LINK ]] ; then
     CUR_SHARE_LINK=$(readlink $SHARE_LINK)
     echo "Symbolic Link exists in $SHARE_LINK"
@@ -176,16 +176,17 @@ if [[ -h $SHARE_LINK ]] ; then
         unlink $SHARE_LINK
         ln -s $LINK_DEST $SHARE_LINK
     fi
-    echo "Update your rc file (.bashrc or .zshrc) adding command source $SHARE_LINK/instantclient.sh"
+    SET_ORAENV_SH="$SHARE_LINK/instantclient.sh"
 else
     if [[ -d $SHARE_LINK ]] ; then
         echo "Found $SHARE_LINK and is a directory. Leaving it untouched."
-        echo "Update your rc file (.bashrc or .zshrc) adding command source $INSTALL_ORACLE_HOME/share/instantclient/instantclient.sh"
     else
         if [[ ! -a $SHARE_LINK ]] ; then
+            SET_ORAENV_SH="$SHARE_LINK/instantclient.sh"
             echo "Creating link $SHARE_LINK -> $LINK_DEST"
-            echo "Update your rc file (.bashrc or .zshrc) adding command source $SHARE_LINK/instantclient.sh"
             ln -s $LINK_DEST $SHARE_LINK
+        else
+            echo "Found $SHARE_LINK and it seems to be a file. Leaving it untouched."
         fi
     fi 
 fi
@@ -224,3 +225,11 @@ fi
 
 # Setting Environment
 source $INSTALL_ORACLE_HOME/share/instantclient/instantclient.sh
+
+# Show Current ORACLE Variables
+echo "Current Environment Config:"
+set | grep "^ORACLE\|OCI_DIR\|TNS_ADMIN\|^DYLD"
+echo
+echo "Update your rc file (.bashrc or .zshrc) adding the following command to set these variables when starting a new terminal session:"
+echo "# Set Oracle Environment Variables"
+echo "source $SET_ORAENV_SH"
