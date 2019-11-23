@@ -2,17 +2,17 @@
 
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
-#BASIC_DIR=instantclient_19_3
-#BASIC_DIR=BASIC-WITH-LIB
 
 movelib () {
-    TARGET_DIR=$1
+    local TARGET_DIR=$1
 
     if [[ ! -d $TARGET_DIR ]]
     then
         echo "$TARGET_DIR directory not found!"
         exit
     fi
+
+    local sav_dir=$(pwd)
 
     cd $TARGET_DIR
 
@@ -35,6 +35,8 @@ movelib () {
 
     # Move the Library Files to the lib directory
     mv *dylib* lib
+
+    cd "$sav_dir"
 } 
 
 movelib $BASIC_DIR

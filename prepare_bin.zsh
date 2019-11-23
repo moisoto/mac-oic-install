@@ -5,7 +5,7 @@ SQLPLUS_DIR=SQLPLUS
 FILES="adrci genezi uidrvci sqlplus"
 
 movelib () {
-    TARGET_DIR=$1
+    local TARGET_DIR=$1
 
     if [[ ! -d $TARGET_DIR ]]
     then
