@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
 FILES="adrci genezi uidrvci sqlplus"
@@ -22,9 +20,9 @@ movelib () {
         mkdir bin
     fi 
 
-    for file in $FILES
+    for FILE in $FILES
     do
-        [[ -x $file ]] && mv $file bin && echo "Moved $file to bin"
+        [[ -x $FILE ]] && mv $FILE bin # && echo "Moved $FILE to bin"
     done
 
     cd "$sav_dir" 
