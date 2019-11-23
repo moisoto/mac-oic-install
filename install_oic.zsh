@@ -228,8 +228,15 @@ source $INSTALL_ORACLE_HOME/share/instantclient/instantclient.sh
 
 # Show Current ORACLE Variables
 echo "Current Environment Config:"
-set | grep "^ORACLE\|OCI_DIR\|TNS_ADMIN\|^DYLD"
+#set | grep "^ORACLE\|OCI_DIR\|TNS_ADMIN\|^DYLD"
+echo "ORACLE_VERSION=$ORACLE_VERSION"
+echo "ORACLE_BASE=$ORACLE_BASE"
+echo "ORACLE_HOME=$ORACLE_HOME"
+echo "DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH"
+echo "OCI_DIR=$OCI_DIR"
+echo "TNS_ADMIN=$TNS_ADMIN"
 echo
+
 echo "Update your rc file (.bashrc or .zshrc) adding the following command to set these variables when starting a new terminal session:"
 echo "# Set Oracle Environment Variables"
 echo "source $SET_ORAENV_SH"
