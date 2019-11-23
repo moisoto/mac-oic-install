@@ -5,8 +5,20 @@ Scripts for installing Oracle Instant Client on MacOS using traditional folder s
 This has been tested on MacOS Catalina v10.15.1
 The script is made to work with Oracle Instant Client 9.3 but an effort has been made so it can (and will probably) be easily modified to work with other versions.
 
+# Easy Installation
 
-### Preparation
+On macOS Catalina when downloading the zip files from Safari they will be flagged with Quarantine attribute and fail to run unless you approve them (see [About Catalina Notarization Requirements] (#about-catalina-notarization-requirements)).
+
+You can use this easy installation procedure to avoid the quarantine issue:
+
+```
+./download_oic.zsh
+sudo ./install_oic.zsh
+```
+
+# Manual Installation
+
+### Prepare
 Please download the following Oracle Instant Client Packages from: [Oracle InstantClient](https://download.oracle.com/otn_software/mac/instantclient/193000/instantclient-basic-macos.x64-19.3.0.0.0dbru.zip)
 
 Only Basic Package is required, others are optional:
@@ -20,7 +32,7 @@ Only Basic Package is required, others are optional:
 After download, the .ZIP files will be extracted into folders by safari (otherwise please extract them manually). Please rename the folders with the following names: BASIC, SQLPLUS, and SDK respectively and put them on the same folder as the install script.
 
 
-# Installation
+### Instal;
 Run the following scripts in the specified order.
 
 ```
