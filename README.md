@@ -7,7 +7,7 @@ The script is made to work with Oracle Instant Client 9.3 but an effort has been
 
 # Easy Installation
 
-On macOS Catalina when downloading the zip files from Safari they will be flagged with Quarantine attribute and fail to run unless you approve them (see [About Catalina Notarization Requirements] (#about-catalina-notarization-requirements)).
+On macOS Catalina when downloading the zip files from Safari they will be flagged with Quarantine attribute and fail to run unless you approve them (see [About Catalina Notarization Requirements](#about-catalina)).
 
 You can use this easy installation procedure to avoid the quarantine issue:
 
