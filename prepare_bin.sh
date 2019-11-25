@@ -1,6 +1,9 @@
+#!/bin/zsh
+
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
-FILES="adrci genezi uidrvci sqlplus"
+FILELIST="adrci genezi uidrvci sqlplus"
+FILES=( ${=FILELIST} )
 
 movelib () {
     local TARGET_DIR=$1
