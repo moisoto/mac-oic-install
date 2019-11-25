@@ -116,6 +116,10 @@ fi
 TNS_ADMIN="$INSTALL_ORACLE_BASE/network/admin"
 [[ ! -d $TNS_ADMIN ]] && mkdir -p $TNS_ADMIN
 
+# Create $ORACLE_HOME if doesn't exists
+TNS_ADMIN="$INSTALL_ORACLE_HOME
+[[ ! -d $TNS_ADMIN ]] && mkdir -p $TNS_ADMIN
+
 echo 
 echo "/=================================================\\"
 echo "|  BASIC instantclient files are being installed  |"
