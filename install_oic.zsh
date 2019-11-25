@@ -119,12 +119,12 @@ TNS_ADMIN="$INSTALL_ORACLE_BASE/network/admin"
 echo 
 echo "/=================================================\\"
 echo "|  BASIC instantclient files are being installed  |"
-#cp -R $BASIC_DIR/ $INSTALL_ORACLE_HOME
+cp -R $BASIC_DIR/ $INSTALL_ORACLE_HOME
 
 if [[ -d $SQLPLUS_DIR ]]
 then
     echo "| SQLPLUS instantclient files are being installed |"
-    #cp -R $SQLPLUS_DIR/ $INSTALL_ORACLE_HOME
+    cp -R $SQLPLUS_DIR/ $INSTALL_ORACLE_HOME
 else
     echo "|       SQLPLUS install files not found           |"
 fi
@@ -132,7 +132,7 @@ fi
 if [[ -d $SDK_DIR ]]
 then
     echo "|   SDK instantclient files are being installed   |"
-    #cp -R $SDK_DIR/ $INSTALL_ORACLE_HOME
+    cp -R $SDK_DIR/ $INSTALL_ORACLE_HOME
 else
     echo "|         SDK install files not found             |"
 fi
@@ -192,7 +192,7 @@ else
 fi
 # \\\END///
 
-#Setup a link to $ORACLE_HOME
+#Setup a link to $ORACLE_HOME/bin/sqlplus
 LINK=/usr/local/bin/sqlplus
 if [[ -x $INSTALL_ORACLE_HOME/bin/sqlplus ]] ; then
     LINK_DEST="../oracle/product/instantclient/$INSTALL_ORACLE_VERSION/bin/sqlplus"
