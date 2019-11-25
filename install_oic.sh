@@ -1,6 +1,8 @@
 #!/bin/zsh
-
 # Performs installation of Oracle Instant Client with traditional folder structure on macOS
+
+# Set Default ZSH Options
+emulate -LR zsh
 
 # Feel free to change this to your preferred location
 INSTALL_ORACLE_BASE=/usr/local/oracle
@@ -75,6 +77,8 @@ then
     fi
 fi
 
+#Avoid "no matches found" error
+setopt NO_NOMATCH
 for f in "$BASIC_DIR/"*dylib*; do
 
     ## Check if the glob gets expanded to existing files.
@@ -90,6 +94,7 @@ for f in "$BASIC_DIR/"*dylib*; do
     ## This is all we needed to know, so we can break after the first iteration
     break
 done
+setopt NOMATCH
 
 # Checks if running as root
 if [[ $UID -ne 0 && $EUID -ne 0 ]]; then
