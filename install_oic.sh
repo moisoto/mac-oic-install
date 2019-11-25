@@ -117,8 +117,7 @@ TNS_ADMIN="$INSTALL_ORACLE_BASE/network/admin"
 [[ ! -d $TNS_ADMIN ]] && mkdir -p $TNS_ADMIN
 
 # Create $ORACLE_HOME if doesn't exists
-TNS_ADMIN="$INSTALL_ORACLE_HOME
-[[ ! -d $TNS_ADMIN ]] && mkdir -p $TNS_ADMIN
+[[ ! -d $INSTALL_ORACLE_HOME ]] && mkdir -p $INSTALL_ORACLE_HOME
 
 echo 
 echo "/=================================================\\"
