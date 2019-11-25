@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Set Default ZSH Options
+emulate -LR zsh
+
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
 

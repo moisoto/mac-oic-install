@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Set Default ZSH Options
+emulate -LR zsh
+
 # Customize this if URLs become broken
 BASE_URL=https://download.oracle.com/otn_software/mac/instantclient/193000
 ZIP_BASIC=instantclient-basic-macos.x64-19.3.0.0.0dbru.zip
