@@ -12,8 +12,8 @@ On macOS Catalina when downloading the zip files from Safari they will be flagge
 You can use this easy installation procedure to avoid the quarantine issue:
 
 ```
-./download_oic.zsh
-sudo ./install_oic.zsh
+./download_oic.sh
+sudo ./install_oic.sh
 ```
 
 # Manual Installation
@@ -37,12 +37,10 @@ After download, the .ZIP files will be extracted into folders by safari (otherwi
 Run the following scripts in the specified order.
 
 ```
-./prepare_lib.zsh
-./prepare_bin.zsh
-sudo ./install_oic.zsh
+./prepare_lib.sh
+./prepare_bin.sh
+sudo ./install_oic.sh
 ```
-Please note these scripts are for ZSH shell (they may work in bash but has not been tested).
-They will run using the ZSH Shell if you are running Catalina or if you have ZSH Installed.
 
 ### About Catalina Notarization Requirements
 When you first try to use any of the binaries supplied by Oracle on a Catalina Installation, you'll probably encounter an error stating the developer can't be verified.
