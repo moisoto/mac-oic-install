@@ -19,6 +19,8 @@ movelib () {
 
     cd $TARGET_DIR
 
+    #Avoid "no matches found" error
+    setopt NO_NOMATCH
     for f in *dylib*; do
 
         ## Check if the glob gets expanded to existing files.
@@ -30,6 +32,7 @@ movelib () {
         ## This is all we needed to know, so we can break after the first iteration
         break
     done
+    setopt NOMATCH
 
     if [[ ! -d lib ]]
     then
