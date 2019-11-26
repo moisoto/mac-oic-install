@@ -40,8 +40,8 @@ dlpkg () {
 [[ ! -d SDK ]] && dlpkg SDK $ZIP_SDK || echo "SDK Package Folder Found. Not Downloading."
 
 # Fix files location on packages
-./prepare_lib.zsh
-./prepare_bin.zsh
+./prepare_lib.sh
+./prepare_bin.sh
 
 # DELETE ZIP FILES
 [[ -a $ZIP_BASIC ]] && rm $ZIP_BASIC
