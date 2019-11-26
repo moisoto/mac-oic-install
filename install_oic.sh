@@ -106,8 +106,9 @@ fi
 
 echo "This will install to $INSTALL_ORACLE_HOME"
 
-read -p  'Do you wish to continue (Y/n)?'
-
+printf "Do you wish to continue (Y/n)?"
+read REPLY
+[[ $REPLY == "y" ]] && echo "Please use Capital Y if you wish to continue"
 if [[ $REPLY != "Y" ]] ; then
     echo "Script Cancelled!"
     exit
