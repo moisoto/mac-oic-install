@@ -26,6 +26,7 @@ dlpkg () {
         mv instantclient_19_3 $TARGET_DIR
     else
         echo "Download Failed. Aborting."
+        exit
     fi
     echo
 }
