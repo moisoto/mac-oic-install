@@ -5,11 +5,14 @@ emulate -LR zsh
 
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
-FILELIST="adrci genezi uidrvci sqlplus"
-FILES=( ${=FILELIST} )
+TOOLS_DIR=TOOLS
+#FILELIST="adrci genezi uidrvci sqlplus"
+#FILES=( ${=FILELIST} )
 
-movelib () {
+movebin () {
     local TARGET_DIR=$1
+    local FILELIST=$2
+    local FILES=( ${=FILELIST} )
 
     if [[ ! -d $TARGET_DIR ]]
     then
@@ -34,5 +37,6 @@ movelib () {
     cd "$sav_dir" 
 } 
 
-movelib $BASIC_DIR
-movelib $SQLPLUS_DIR
+movebin $BASIC_DIR "adrci genezi uidrvci"
+movebin $SQLPLUS_DIR "sqlplus"
+movebin $TOOLS_DIR "exp expdp imp impdp install_ic.sh libnfsodm19.dylib sqlldr wrc"

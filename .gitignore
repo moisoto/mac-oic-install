@@ -1,4 +1,5 @@
-*.zip
+*.dmg
 BASIC/
 SQLPLUS/
 SDK/
+TOOLS/

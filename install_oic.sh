@@ -7,7 +7,7 @@ emulate -LR zsh
 # Feel free to change this to your preferred location
 INSTALL_ORACLE_BASE=/usr/local/oracle
 
-INSTALL_ORACLE_VERSION=19.3
+INSTALL_ORACLE_VERSION=19.8
 
 # Leave this as is for traditional directory structure
 INSTALL_ORACLE_HOME=$INSTALL_ORACLE_BASE/product/instantclient/$INSTALL_ORACLE_VERSION
@@ -15,6 +15,7 @@ INSTALL_ORACLE_HOME=$INSTALL_ORACLE_BASE/product/instantclient/$INSTALL_ORACLE_V
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
 SDK_DIR=SDK
+TOOLS_DIR=TOOLS
 
 #==================
 # SOME VALIDATIONS
@@ -144,6 +145,14 @@ then
     cp -R $SDK_DIR/ $INSTALL_ORACLE_HOME
 else
     echo "|         SDK install files not found             |"
+fi
+
+if [[ -d $TOOLS_DIR ]]
+then
+    echo "|  TOOLS instantclient files are being installed  |"
+    cp -R $TOOLS_DIR/ $INSTALL_ORACLE_HOME
+else
+    echo "|        TOOLS install files not found            |"
 fi
 
     echo "\\=================================================/"
