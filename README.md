@@ -1,3 +1,6 @@
+[![](https://img.shields.io/static/v1.svg?label=Made%20with&message=ZSH&color=red)](http://zsh.sourceforge.net)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # mac-oic-install
 Scripts for installing Oracle Instant Client on MacOS using traditional folder structure
 
