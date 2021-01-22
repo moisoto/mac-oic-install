@@ -5,6 +5,7 @@ emulate -LR zsh
 
 BASIC_DIR=BASIC
 SQLPLUS_DIR=SQLPLUS
+TOOLS_DIR=TOOLS
 
 movelib () {
     local TARGET_DIR=$1
@@ -47,3 +48,4 @@ movelib () {
 
 movelib $BASIC_DIR
 movelib $SQLPLUS_DIR
+movelib $TOOLS_DIR

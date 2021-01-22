@@ -61,8 +61,10 @@ mvpkg () {
 # Fix files location on packages
 ./prepare_lib.sh
 ./prepare_bin.sh
+./cr_links.sh
 
 # DELETE ZIP FILES
 [[ -a $DMG_BASIC.dmg ]] && rm $DMG_BASIC.dmg
 [[ -a $DMG_SQLPLUS.dmg ]] && rm $DMG_SQLPLUS.dmg
 [[ -a $DMG_SDK.dmg ]] && rm $DMG_SDK.dmg
+[[ -a $DMG_TOOLS.dmg ]] && rm $DMG_TOOLS.dmg

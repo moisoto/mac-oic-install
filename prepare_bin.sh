@@ -39,4 +39,4 @@ movebin () {
 
 movebin $BASIC_DIR "adrci genezi uidrvci"
 movebin $SQLPLUS_DIR "sqlplus"
-movebin $TOOLS_DIR "exp expdp imp impdp install_ic.sh libnfsodm19.dylib sqlldr wrc"
+movebin $TOOLS_DIR "exp expdp imp impdp install_ic.sh sqlldr wrc"
