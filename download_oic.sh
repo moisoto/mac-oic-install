@@ -42,6 +42,7 @@ mvpkg () {
     mkdir $TARGET_DIR && cp -R $MOUNT_POINT/ $TARGET_DIR    
 
     echo "Unmounting $DMG_FILE..."
+    hdiutil detach $DEV_ENTRY
     echo
 }
 
