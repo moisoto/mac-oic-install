@@ -1,5 +1,7 @@
+.DS_Store
 *.dmg
-BASIC/
-SQLPLUS/
-SDK/
-TOOLS/
+instantclient_23_26/
+v19.8/BASIC/
+v19.8/SQLPLUS/
+v19.8/SDK/
+v19.8/TOOLS/
