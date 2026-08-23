@@ -161,6 +161,11 @@ else
 fi
 # \\\END///
 
+# Substitute the start of the string with $HOME is path matches
+if [[ $ORAENV_ZSH == "$HOME"* ]]; then
+  ORAENV_ZSH='$HOME'${ORAENV_ZSH#"$HOME"}
+fi
+
 # Show Current ORACLE Variables
 echo "Current Environment Config:"
 echo "ORACLE_VERSION=$ORACLE_VERSION"
