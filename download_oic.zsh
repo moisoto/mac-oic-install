@@ -4,7 +4,7 @@
 emulate -LR zsh
 
 # Save started information
-BASE_DIR=$PWD
+typeset -r BASE_DIR="${PWD:A}"
 
 typeset -g MOUNT_POINT=""
 typeset -g DEV_ENTRY=""
@@ -13,6 +13,30 @@ typeset basic_dev
 typeset sqlplus_dev
 typeset tools_dev
 typeset sdk_dev
+typeset -i PURGE_DMGS=0
+typeset -i KEEP_DMGS=0
+
+for option in "$@"; do
+  case "$option" in
+    --purge-dmgs)
+      PURGE_DMGS=1
+      ;;
+    --keep-dmgs)
+      KEEP_DMGS=1
+      ;;
+    *)
+      print -u2 -r -- "Unknown option: $option"
+      print -u2 -r -- "Usage: ${0:t} [--purge-dmgs]"
+      exit 2
+      ;;
+  esac
+done
+
+if (( PURGE_DMGS && KEEP_DMGS )); then
+  print -u2 -r -- "--purge-dmgs and --keep-dmgs cannot be used together."
+  print -u2 -r -- "Usage: ${0:t} [--purge-dmgs | --keep-dmgs]"
+  exit 2
+fi
 
 # Customize this if URLs become broken
 BASE_URL=https://download.oracle.com/otn_software/mac/instantclient/2326200
@@ -22,7 +46,6 @@ DMG_TOOLS=instantclient-tools-macos.arm64-23.26.2.0.0.dmg
 DMG_SDK=instantclient-sdk-macos.arm64-23.26.2.0.0.dmg
 IC_FOLDER_NAME="instantclient_23_26"
 DOWNLOAD_FOLDER="$HOME/Downloads/$IC_FOLDER_NAME"
-OUTPUT_FOLDER="$BASE_DIR/${DOWNLOAD_FOLDER:t}"
 
 abort() {
   if (( $# > 0 )); then
@@ -102,57 +125,37 @@ cleanup() {
 }
 
 remove_dmgs() {
-  if [[ ! -t 0 ]]; then
-    print "Not an interactive terminal; keeping downloaded DMG files."
-    return
+  if (( ! PURGE_DMGS && ! KEEP_DMGS )); then
+    if [[ ! -t 0 ]]; then
+      print "Not an interactive terminal; keeping downloaded DMG files."
+      return
+    fi
+
+    print -n -- "Remove the downloaded Oracle Instant Client DMG files? [y/N] "
+
+    if read -q; then
+      PURGE_DMGS=1
+    fi
+
+    print
   fi
 
-  print -n -- "Remove the downloaded Oracle Instant Client DMG files? [y/N] "
-  if read -q; then
-    print
-
-    cd -- "$BASE_DIR" || {
-      print -u2 -- "Could not return to the starting directory."
-      return 1
-    }
+  if (( PURGE_DMGS )); then
     rm -f -- \
-      "$DMG_BASIC" \
-      "$DMG_SQLPLUS" \
-      "$DMG_SDK" \
-      "$DMG_TOOLS"
+      "$BASE_DIR/$DMG_BASIC" \
+      "$BASE_DIR/$DMG_SQLPLUS" \
+      "$BASE_DIR/$DMG_SDK" \
+      "$BASE_DIR/$DMG_TOOLS"
+
     print "Downloaded DMG files removed."
   else
-    print
     print "Keeping downloaded DMG files."
   fi
 }
 
-
 ###
 #Script starts here
 ###
-
-if [[ "$OUTPUT_FOLDER" != "$DOWNLOAD_FOLDER" ]]; then
-  if [[ -e "$OUTPUT_FOLDER" || -L "$OUTPUT_FOLDER" ]]; then
-    if [[ ! -d "$OUTPUT_FOLDER" || -L "$OUTPUT_FOLDER" ||
-          ${OUTPUT_FOLDER:h} != "$BASE_DIR" ||
-          ${OUTPUT_FOLDER:t} != "$IC_FOLDER_NAME" ]]; then
-      abort "Final output folder in unexpected path: $OUTPUT_FOLDER"
-    fi
-
-    print "Previous download detected!"
-    print -n -- "Remove the previously downloaded Oracle Instant Client? [y/N] "
-    if read -q; then
-      print
-      print "Deleting folder $OUTPUT_FOLDER"
-      rm -Rf -- "$OUTPUT_FOLDER" ||
-        abort "Failed to remove previous download: $OUTPUT_FOLDER"
-    else
-      print -u2
-      abort "Output folder already exists: $OUTPUT_FOLDER"
-    fi
-  fi
-fi
 
 install_script="install_ic.sh"
 
@@ -195,12 +198,6 @@ if [[ -d "$basic_mnt_point" ]]; then
     print -u2 -- "Something went wrong. Could not find downloaded files!"
     cleanup
     exit 1
-  fi
-
-  # Copy downloaded files to the directory where this script was run
-  if [[ "$OUTPUT_FOLDER" != "$DOWNLOAD_FOLDER" ]]; then
-    cp -R -- "$DOWNLOAD_FOLDER" "$BASE_DIR" ||
-      { cleanup; abort "Could not copy files to $BASE_DIR"; }
   fi
   cleanup
 else

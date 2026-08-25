@@ -27,6 +27,9 @@ abort() {
 # SOME VALIDATIONS
 #==================
 
+# If downloaded files are not on current folder assume they are on ~/Downloads
+[[ ! -d $DOWNLOAD_FOLDER ]] && DOWNLOAD_FOLDER="$HOME/Downloads/instantclient_23_26"
+
 # Check downloaded folder is present
 if [[ ! -d $DOWNLOAD_FOLDER ]]; then
   echo "Oracle Instant Client Files not Found!"
@@ -176,5 +179,6 @@ echo
 
 echo "Update your startup script (.zshrc for example)"
 echo "Add the following command to set these variables when starting a new terminal session:"
+echo
 echo "# Set Oracle Environment Variables"
 echo "[[ -r \"$ORAENV_ZSH\" ]] && source \"$ORAENV_ZSH\""
